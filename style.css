@@ -1,0 +1,225 @@
+/* racheljmarko.com — shared site styles
+   Placeholder visual direction: neutral, gallery-forward, gets out of the art's way.
+   Swap the CSS variables below once Rachel's brand direction (colors/fonts/logo) is set. */
+
+:root {
+  --color-bg: #faf9f7;
+  --color-text: #232120;
+  --color-muted: #6b6560;
+  --color-accent: #9c6b4f; /* placeholder accent — swap for Rachel's palette */
+  --color-border: #e4e0da;
+  --font-heading: Georgia, 'Times New Roman', serif;
+  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --max-width: 1100px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+a { color: var(--color-accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+img { max-width: 100%; display: block; }
+
+.site-header {
+  border-bottom: 1px solid var(--color-border);
+  padding: 1.5rem 1.5rem;
+}
+
+.site-header .wrap {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.site-title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  letter-spacing: 0.02em;
+  color: var(--color-text);
+}
+
+.site-nav { display: flex; gap: 1.5rem; }
+.site-nav a { color: var(--color-text); font-size: 0.95rem; }
+.site-nav a.active { color: var(--color-accent); font-weight: 600; }
+
+main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  font-weight: normal;
+  line-height: 1.25;
+}
+
+h1 { font-size: 2.4rem; margin-bottom: 0.5rem; }
+h2 { font-size: 1.6rem; margin-top: 2.5rem; }
+
+.lede {
+  color: var(--color-muted);
+  font-size: 1.1rem;
+  max-width: 65ch;
+}
+
+.notice {
+  background: #fff8ec;
+  border: 1px solid #f0e2c4;
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  font-size: 0.92rem;
+  color: #6b5730;
+  margin: 1.5rem 0 2.5rem;
+}
+
+.bio-section {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+@media (min-width: 720px) {
+  .bio-section { grid-template-columns: 280px 1fr; }
+}
+
+.essay {
+  max-width: 68ch;
+  margin: 0 0 3rem;
+}
+
+.essay p {
+  margin: 0 0 1.25rem;
+}
+
+.bio-portrait {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  background: var(--color-border);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 1rem;
+}
+
+.contact-form {
+  max-width: 520px;
+}
+
+.contact-form label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  margin: 1rem 0 0.35rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  background: #fff;
+}
+
+.contact-form textarea { min-height: 140px; resize: vertical; }
+
+.contact-form button {
+  margin-top: 1.5rem;
+  background: var(--color-accent);
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.75rem;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.contact-form button:hover { opacity: 0.9; }
+
+.gallery-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+  margin: 1.5rem 0 2rem;
+  padding: 0;
+  list-style: none;
+}
+
+.gallery-tabs button {
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.gallery-tabs button.active {
+  background: var(--color-text);
+  color: #fff;
+  border-color: var(--color-text);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+
+.gallery-grid .tile {
+  aspect-ratio: 1 / 1;
+  background: var(--color-border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.gallery-grid .tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.blog-list { list-style: none; padding: 0; margin: 2rem 0; }
+.blog-list li {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+.blog-list .post-date {
+  font-size: 0.82rem;
+  color: var(--color-muted);
+}
+.blog-list .post-title {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  margin: 0.25rem 0 0.35rem;
+}
+.blog-list .post-excerpt { color: var(--color-muted); }
+
+.site-footer {
+  border-top: 1px solid var(--color-border);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  color: var(--color-muted);
+  font-size: 0.85rem;
+}
