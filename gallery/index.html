@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery — Rachel J. Marko</title>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap">
+      <div class="site-title">Rachel J. Marko</div>
+      <nav class="site-nav">
+        <a href="/">Home</a>
+        <a href="/gallery/" class="active">Gallery</a>
+        <a href="/blog/">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h1>Gallery</h1>
+    <p class="lede">Work is organized into Rachel's own categories, pulled live from her Google Drive.</p>
+
+    <div class="notice">
+      <strong>Not connected yet.</strong> This gallery will pull directly from Rachel's 8 Google Drive
+      folders once an API key and folder IDs are configured (see assets/js/gallery.js). New work she adds
+      to those folders will then appear here automatically — no manual upload step.
+    </div>
+
+    <ul class="gallery-tabs" id="gallery-tabs"></ul>
+    <div class="gallery-grid" id="gallery-grid"></div>
+  </main>
+
+  <footer class="site-footer">
+    &copy; <span id="year"></span> Rachel J. Marko
+  </footer>
+
+  <script src="/assets/js/gallery.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
