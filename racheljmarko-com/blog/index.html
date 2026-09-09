@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — Rachel J. Marko</title>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap">
+      <div class="site-title">Rachel J. Marko</div>
+      <nav class="site-nav">
+        <a href="/">Home</a>
+        <a href="/gallery/">Gallery</a>
+        <a href="/blog/" class="active">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h1>Blog</h1>
+    <p class="lede">Notes, process, and updates from the studio.</p>
+
+    <!--
+      TODO: each new post is a plain HTML file under /blog/posts/, copied from
+      /blog/posts/welcome.html. Add a matching <li> entry here, newest first.
+    -->
+    <ul class="blog-list">
+      <li>
+        <p class="post-date">Placeholder date</p>
+        <h2 class="post-title"><a href="/blog/posts/welcome.html">This is a sample post</a></h2>
+        <p class="post-excerpt">Sample placeholder excerpt — swap for the real first post whenever Rachel's ready to write one.</p>
+      </li>
+    </ul>
+  </main>
+
+  <footer class="site-footer">
+    &copy; <span id="year"></span> Rachel J. Marko
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
