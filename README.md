@@ -5,22 +5,25 @@ no build step, same pattern as thegreenwoodtavern.com and samsbargrill.com.
 
 ## Structure
 
-- `/index.html` — landing page: bio + contact form
-- `/gallery/index.html` — gallery, pulls live from Google Drive (not wired up yet)
+- `/index.html` — landing page: real bio copy is in, contact form still needs Formspree
+- `/gallery/index.html` — gallery, live and pulling real images from Rachel's Drive folders
 - `/blog/index.html` — blog listing; posts live in `/blog/posts/*.html`
 - `/assets/css/style.css` — shared styles (placeholder palette, swap for Rachel's brand)
-- `/assets/js/gallery.js` — Drive API integration for the gallery (not wired up yet)
+- `/assets/js/gallery.js` — Drive API integration for the gallery, live (real folder IDs,
+  API key, and the 6 category descriptions Rachel wrote)
 
-## Status: scaffold only — TODO before this is a real, live site
+## Status — TODO before this is fully done
 
-- [ ] Real bio copy + portrait photo for the landing page
+- [x] Real bio copy for the landing page
+- [ ] Portrait/studio photo for the landing page
 - [ ] Formspree account + form ID wired into the contact form (`index.html`)
-- [ ] Google Cloud project + restricted API key for the Drive gallery
-- [ ] The 8 Drive folder IDs + labels, and confirmation they're shared "anyone with the link can view"
+- [x] Google Cloud project + restricted API key for the Drive gallery
+- [x] The 6 Drive folder IDs + labels, folders shared "anyone with the link can view" —
+      confirm with Rachel whether 2 more categories are still coming (originally scoped as 8)
 - [ ] Brand direction — colors, fonts, logo (currently placeholder neutral palette in style.css)
 - [ ] First real blog post
-- [ ] Enable GitHub Pages: repo Settings → Pages → Source: Deploy from branch → `main` / `(root)`
-- [ ] Domain cutover: point racheljmarko.com DNS at GitHub Pages, add a CNAME file once ready
+- [x] GitHub Pages enabled and live
+- [x] Domain cutover: racheljmarko.com DNS points here, CNAME file in place, SSL provisioning
 - [ ] Google Workspace mailbox on the domain, then update the contact form's destination
 
 ## Adding a blog post

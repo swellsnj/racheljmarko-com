@@ -96,6 +96,15 @@ h2 { font-size: 1.6rem; margin-top: 2.5rem; }
   .bio-section { grid-template-columns: 280px 1fr; }
 }
 
+.essay {
+  max-width: 68ch;
+  margin: 0 0 3rem;
+}
+
+.essay p {
+  margin: 0 0 1.25rem;
+}
+
 .bio-portrait {
   width: 100%;
   aspect-ratio: 4 / 5;

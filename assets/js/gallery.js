@@ -1,36 +1,60 @@
 /*
   racheljmarko.com — live gallery, pulled from Google Drive
 
-  HOW THIS WILL WORK (not wired up yet — see notice on the gallery page):
-  1. Each of Rachel's 8 Drive folders (one per gallery category) gets its ID recorded below.
-  2. A restricted Google API key (restricted to this domain, Drive API read-only scope)
-     is added below. The 8 folders must be shared "Anyone with the link can view" for a
-     client-side key like this to read them without a backend.
-  3. On page load, this script calls the Drive API "files.list" endpoint for each folder
-     (q=`'<folderId>' in parents and mimeType contains 'image/'`), and renders the images
-     into the grid below, tagged by category so the tab filters work.
-  4. Because it queries Drive directly on every page load, new files Rachel adds to a
-     folder appear on the site the next time someone visits — no rebuild or re-upload step.
+  HOW THIS WORKS:
+  On page load, this script calls the Drive API "files.list" endpoint for each of Rachel's
+  category folders and renders the images into the grid below, tagged by category so the tab
+  filters work. Because it queries Drive directly on every page load, new files Rachel adds to
+  a folder appear on the site the next time someone visits — no rebuild or re-upload step.
 
-  TODO before this goes live:
-  - [ ] Get an API key from a Google Cloud project (console.cloud.google.com), restricted
-        to the Drive API and to HTTP referrer racheljmarko.com
-  - [ ] Get the 8 folder IDs (from each folder's Drive URL) and their display names
-  - [ ] Confirm the 8 folders are shared "Anyone with the link can view"
-  - [ ] Fill in GALLERY_FOLDERS and API_KEY below and remove the placeholder message
+  STATUS: live. Folder IDs, labels, and API key are all real. The 6 folders are shared
+  "anyone with the link can view."
+
+  TODO: confirm with Rachel whether 2 more categories are still coming (originally scoped
+  as 8, only 6 exist in Drive right now) and add them below if so.
 */
 
-const API_KEY = ''; // TODO: fill in restricted Google API key
+const API_KEY = 'AIzaSyBNW9gg1Ijz3W65u52BOIYVqjwUmUaV6kk';
+
 const GALLERY_FOLDERS = [
-  // { id: 'GOOGLE_DRIVE_FOLDER_ID', label: 'Category name' },
+  {
+    id: '1XIoFQoVXFVA7KxXofmpMxVrfXSKcQJQs',
+    label: 'Mandala',
+    description: 'I went through a phase. It was pretty long, but certainly something I had to go through. The mandala work was basically a meditation for me. I even taught mandala drawing classes for a while. These repetitive drawings gave me something to concentrate on when I needed it. I have screenprinted my mandalas as well as sold them on merchandise.',
+  },
+  {
+    id: '19VvoRgd5SiUc7Tln6hJB3KxvZFdtiJPA',
+    label: 'Misc',
+    description: '',
+  },
+  {
+    id: '1lRGW5Ph4rFW5ETOBbf0fFU6-fqvxjNy-',
+    label: 'Murals',
+    description: 'This is something that I have always done. I get really excited over a blank wall. I really wish I had more pictures of my mural work. A bunch of it was from pre cell phone times. If I ever find any printed photos I will share.',
+  },
+  {
+    id: '1MDZN5e-n1TYMyIe9JZQ-VI5uB6FQAh4P',
+    label: 'Builds',
+    description: 'I have been building since I could pick up tools. This has always been a love for me. I grew up learning how to use power tools and I have always been more comfortable using them than computers. I didn’t know that the profession of “fabricating” existed until more recently. I think if I knew about this when I was younger this is probably the direction I would have gone in. I just really like solving visual problems.',
+  },
+  {
+    id: '1p_yQfJmIacuIg5BXtcIwhioA-sygRYF8',
+    label: 'Typography',
+    description: '',
+  },
+  {
+    id: '16YfOZzKYlsHmADvw1dfTc6O2qRkyfQyM',
+    label: 'Prints & Surface Design',
+    description: 'I mostly only wear solid colors but I have always been attracted to textile and surface design. I often don’t plan ahead the designs I am making, but figure it out as I go. Everything on here is hand drawn and or printed. There are a few designs that I begrudgingly scanned into the computer and colored. I prefer to use the least technology possible.',
+  },
 ];
 
 async function loadGallery() {
   const grid = document.getElementById('gallery-grid');
   const tabs = document.getElementById('gallery-tabs');
+  const description = document.getElementById('gallery-description');
 
-  if (!API_KEY || GALLERY_FOLDERS.length === 0) {
-    // Not configured yet — placeholder state, see notice on the page itself.
+  if (!API_KEY) {
     return;
   }
 
@@ -39,13 +63,14 @@ async function loadGallery() {
 
   let allFiles = [];
   for (const folder of GALLERY_FOLDERS) {
-    const url = `https://www.googleapis.com/drive/v3/files?q='${folder.id}'+in+parents+and+mimeType+contains+'image/'&fields=files(id,name,thumbnailLink,webContentLink)&key=${API_KEY}`;
+    const url = `https://www.googleapis.com/drive/v3/files?q='${folder.id}'+in+parents+and+mimeType+contains+'image/'&fields=files(id,name,thumbnailLink)&pageSize=1000&key=${API_KEY}`;
     const res = await fetch(url);
     const data = await res.json();
-    (data.files || []).forEach(f => allFiles.push({ ...f, category: folder.id, categoryLabel: folder.label }));
+    (data.files || []).forEach(f => allFiles.push({ ...f, category: folder.id }));
   }
 
   renderGrid(allFiles);
+  updateDescription('all');
 
   tabs.addEventListener('click', (e) => {
     if (e.target.tagName !== 'BUTTON') return;
@@ -53,13 +78,25 @@ async function loadGallery() {
     e.target.classList.add('active');
     const cat = e.target.dataset.cat;
     renderGrid(cat === 'all' ? allFiles : allFiles.filter(f => f.category === cat));
+    updateDescription(cat);
   });
+
+  function updateDescription(cat) {
+    const folder = GALLERY_FOLDERS.find(f => f.id === cat);
+    if (folder && folder.description) {
+      description.textContent = folder.description;
+      description.hidden = false;
+    } else {
+      description.textContent = '';
+      description.hidden = true;
+    }
+  }
 
   function renderGrid(files) {
     grid.innerHTML = files.map(f => `
-      <div class="tile">
+      <a class="tile" href="https://drive.google.com/file/d/${f.id}/view" target="_blank" rel="noopener">
         <img src="${f.thumbnailLink}" alt="${f.name}" loading="lazy" />
-      </div>
+      </a>
     `).join('');
   }
 }
