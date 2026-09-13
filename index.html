@@ -62,13 +62,13 @@
     <p class="lede">Commissions, inquiries, press — send a message and Rachel will get back to you.</p>
 
     <!--
-      TODO: this form posts to Formspree once the endpoint exists.
-      1. Create a free account at https://formspree.io
-      2. Create a form, get the endpoint (looks like https://formspree.io/f/xxxxxxx)
-      3. Replace the action="" value below with that URL
-      4. Point submissions at the racheljmarko.com Workspace mailbox once it exists
+      Form posts to Formspree (rachel.j.marko@gmail.com is the current destination).
+      TODO: once the racheljmarko.com Workspace mailbox exists, update the destination
+      email in the Formspree dashboard (no code change needed here).
     -->
-    <form class="contact-form" action="https://formspree.io/f/REPLACE_WITH_FORM_ID" method="POST">
+    <form class="contact-form" action="https://formspree.io/f/maeygbve" method="POST">
+      <input type="hidden" name="_subject" value="New message from racheljmarko.com" />
+
       <label for="name">Name</label>
       <input type="text" id="name" name="name" required />
 

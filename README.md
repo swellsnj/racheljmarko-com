@@ -5,7 +5,7 @@ no build step, same pattern as thegreenwoodtavern.com and samsbargrill.com.
 
 ## Structure
 
-- `/index.html` — landing page: real bio copy is in, contact form still needs Formspree
+- `/index.html` — landing page: real bio copy is in, contact form live via Formspree
 - `/gallery/index.html` — gallery, live and pulling real images from Rachel's Drive folders
 - `/blog/index.html` — blog listing; posts live in `/blog/posts/*.html`
 - `/assets/css/style.css` — shared styles (placeholder palette, swap for Rachel's brand)
@@ -16,7 +16,8 @@ no build step, same pattern as thegreenwoodtavern.com and samsbargrill.com.
 
 - [x] Real bio copy for the landing page
 - [ ] Portrait/studio photo for the landing page
-- [ ] Formspree account + form ID wired into the contact form (`index.html`)
+- [x] Formspree account + form ID wired into the contact form (`index.html`) —
+      destination is rachel.j.marko@gmail.com for now
 - [x] Google Cloud project + restricted API key for the Drive gallery
 - [x] The 6 Drive folder IDs + labels, folders shared "anyone with the link can view" —
       confirm with Rachel whether 2 more categories are still coming (originally scoped as 8)
