@@ -4,6 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Blog — Rachel J. Marko</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" />
   <link rel="stylesheet" href="/assets/css/style.css" />
 </head>
 <body>
@@ -25,15 +29,19 @@
 
     <!--
       TODO: each new post is a plain HTML file under /blog/posts/, copied from
-      /blog/posts/welcome.html. Add a matching <li> entry here, newest first.
+      /blog/posts/welcome.html. Add a matching <article class="blog-card"> entry here,
+      newest first. The thumbnail box can stay a placeholder until there's a real image.
     -->
-    <ul class="blog-list">
-      <li>
-        <p class="post-date">Placeholder date</p>
-        <h2 class="post-title"><a href="/blog/posts/welcome.html">This is a sample post</a></h2>
-        <p class="post-excerpt">Sample placeholder excerpt — swap for the real first post whenever Rachel's ready to write one.</p>
-      </li>
-    </ul>
+    <div class="blog-grid">
+      <article class="blog-card">
+        <a class="blog-card-thumb" href="/blog/posts/welcome.html">[ post image ]</a>
+        <div class="blog-card-body">
+          <h2 class="post-title"><a href="/blog/posts/welcome.html">This is a sample post</a></h2>
+          <p class="post-date">Placeholder date</p>
+          <a class="post-readmore" href="/blog/posts/welcome.html">Read more →</a>
+        </div>
+      </article>
+    </div>
   </main>
 
   <footer class="site-footer">
