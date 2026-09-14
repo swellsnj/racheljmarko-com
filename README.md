@@ -40,8 +40,7 @@ no build step, same pattern as thegreenwoodtavern.com and samsbargrill.com.
       "Prints & Surface Design" is still combined, and there's no "Merch" folder. If Rachel
       wants them split out as in the mockup, she needs to create/share those Drive folders
       and send over the new folder IDs.
-- [ ] Rachel's real Facebook / TikTok / Instagram links — homepage icons are placeholders
-      (`href="#"`) for now, see the `social-links` block in `index.html`
+- [x] Rachel's real Facebook / TikTok / Instagram links wired into the homepage icons
 - [ ] First real blog post
 - [x] GitHub Pages enabled and live
 - [x] Domain cutover: racheljmarko.com DNS points here, CNAME file in place, SSL provisioning
