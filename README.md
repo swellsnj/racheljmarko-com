@@ -7,8 +7,8 @@ no build step, same pattern as thegreenwoodtavern.com and samsbargrill.com.
 
 - `/index.html` — landing page: real bio copy, live hero art, contact form live via Formspree
 - `/gallery/index.html` — gallery, live and pulling real images from Rachel's Drive folders
-- `/blog/index.html` — blog, powered by a Google Form + Sheet on Rachel's own account (not
-  yet connected — see "Setting up the blog" below)
+- `/blog/index.html` — blog, powered by a Google Form + Sheet on Rachel's own account
+  (Sheet ID is wired in; still needs the Sheet's sharing fixed, see Status below)
 - `/assets/css/style.css` — shared styles, matching Rachel's Canva mockup (palette + fonts)
 - `/assets/js/gallery.js` — Drive API integration for the gallery, live (real folder IDs,
   API key, and the 6 category descriptions Rachel wrote)
@@ -16,19 +16,20 @@ no build step, same pattern as thegreenwoodtavern.com and samsbargrill.com.
 - `/assets/js/blog.js` — reads Rachel's Google Sheet and renders blog posts + single-post pages
 - `/blog/posts/welcome.html` — leftover from the old copy-a-file blogging approach, no longer
   used now that the blog is Sheet-powered; harmless to leave in place or delete later
+- `/assets/fonts/papercutting-regular.woff2` + `.woff` — the real purchased headline font,
+  self-hosted (see @font-face at the top of style.css)
 
 ## Brand direction — from Rachel's Canva mockup
 
 - Landing/blog background: `#dad0c2`. Gallery background: `#f1eeee` (see `body.gallery-page`
   in style.css).
-- Headline font in the mockup is **Papercutting**, body font is **PP Telegraf** — both turned
-  out to be paid fonts with no free commercial webfont license (Papercutting's free copy is
-  personal-use-only; PP Telegraf requires a purchased license from Pangram Pangram). Scott
-  opted to use free look-alikes instead:
-  - Headline: **Luckiest Guy** (Google Fonts) — bold, hand-cut/sticker feel similar to Papercutting.
-  - Body: **General Sans** (Fontshare) — clean geometric sans similar to PP Telegraf.
-  - If the real fonts get licensed later, swap the `<link>` tags in each page's `<head>` and
-    the `--font-heading` / `--font-body` values in `style.css`.
+- Headline font: **Papercutting**, the real font from the mockup — Scott bought the Desktop +
+  Webfont license (Creative Market / Creativetacos, $27.75) and it's self-hosted under
+  `/assets/fonts/`. No Google Fonts link needed for it.
+- Body font: **General Sans** (Fontshare, free) — standing in for the mockup's **PP Telegraf**,
+  which is a separate paid font (~$260+ for a web license) that Rachel decided wasn't worth
+  buying for body text. If that changes later, swap the Fontshare `<link>` for a PP Telegraf
+  license and update `--font-body` in style.css.
 
 ## Setting up the blog (one-time, on Rachel's Google account)
 
@@ -66,15 +67,17 @@ no upload, no rebuild. Rachel manages her own posts entirely from the Sheet:
       destination is rachel.j.marko@gmail.com for now
 - [x] Google Cloud project + restricted API key for the Drive gallery
 - [x] The 6 Drive folder IDs + labels, folders shared "anyone with the link can view"
-- [x] Brand direction — colors + fonts applied from Rachel's mockup (see above); no logo yet
+- [x] Brand direction — colors + fonts applied from Rachel's mockup; headline font is now the
+      real purchased Papercutting, body font is still the free General Sans look-alike; no logo yet
 - [ ] Gallery categories don't fully match the mockup yet — it lists 8 (Prints, Mandalas,
       Surface Design, Murals, Typography, Builds, Misc, Merch), Drive only has 6 folders.
       "Prints & Surface Design" is still combined, and there's no "Merch" folder. If Rachel
       wants them split out as in the mockup, she needs to create/share those Drive folders
       and send over the new folder IDs.
 - [x] Rachel's real Facebook / TikTok / Instagram links wired into the homepage icons
-- [ ] Blog: Rachel needs to create the Google Form + Sheet (see "Setting up the blog" above)
-      and send Scott the Sheet ID/URL to finish wiring `assets/js/blog.js`
+- [ ] Blog: Form + Sheet exist and the Sheet ID is wired into `assets/js/blog.js`, but the
+      Sheet still isn't shared correctly — fetching it returns a permission error. Double
+      check the Sheet's Share settings: "Anyone with the link" → Viewer (see step 4 above).
 - [x] GitHub Pages enabled and live
 - [x] Domain cutover: racheljmarko.com DNS points here, CNAME file in place, SSL provisioning
 - [ ] Google Workspace mailbox on the domain, then update the contact form's destination
