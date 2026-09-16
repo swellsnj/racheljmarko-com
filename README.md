@@ -61,8 +61,9 @@ no upload, no rebuild. Rachel manages her own posts entirely from the Sheet:
 ## Status — TODO before this is fully done
 
 - [x] Real bio copy for the landing page
-- [ ] Portrait/studio photo for the landing page — once it's in, also remove the
-      "Under construction" notice from `index.html`
+- [x] Portrait photo for the landing page (`assets/images/rachel-portrait.jpg`) — the
+      "Under construction" notice is removed from `index.html` now that this and the
+      social links are both done
 - [x] Formspree account + form ID wired into the contact form (`index.html`) —
       destination is rachel.j.marko@gmail.com for now
 - [x] Google Cloud project + restricted API key for the Drive gallery
