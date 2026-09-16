@@ -24,30 +24,27 @@
   </header>
 
   <main>
-    <h1>Blog</h1>
-    <p class="lede">Notes, process, and updates from the studio.</p>
-
-    <!--
-      TODO: each new post is a plain HTML file under /blog/posts/, copied from
-      /blog/posts/welcome.html. Add a matching <article class="blog-card"> entry here,
-      newest first. The thumbnail box can stay a placeholder until there's a real image.
-    -->
-    <div class="blog-grid">
-      <article class="blog-card">
-        <a class="blog-card-thumb" href="/blog/posts/welcome.html">[ post image ]</a>
-        <div class="blog-card-body">
-          <h2 class="post-title"><a href="/blog/posts/welcome.html">This is a sample post</a></h2>
-          <p class="post-date">Placeholder date</p>
-          <a class="post-readmore" href="/blog/posts/welcome.html">Read more →</a>
-        </div>
-      </article>
+    <div id="blog-intro">
+      <h1>Blog</h1>
+      <p class="lede">Notes, process, and updates from the studio.</p>
     </div>
+
+    <div class="notice" id="blog-not-connected">
+      <strong>Not connected yet.</strong> Once Rachel's Google Form + Sheet are set up and the
+      Sheet ID is dropped into <code>assets/js/blog.js</code>, posts she submits through the
+      form will show up here automatically — no upload step. See README.md for the checklist.
+    </div>
+
+    <div class="blog-grid" id="blog-grid"></div>
+
+    <article id="blog-post-view" hidden></article>
   </main>
 
   <footer class="site-footer">
     &copy; <span id="year"></span> Rachel J. Marko
   </footer>
 
+  <script src="/assets/js/blog.js"></script>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
