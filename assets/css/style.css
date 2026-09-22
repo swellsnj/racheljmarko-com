@@ -333,6 +333,13 @@ body.lightbox-open { overflow: hidden; }
   z-index: 100;
 }
 
+/* The [hidden] attribute and this class both have equal CSS specificity, and this rule
+   comes later in the file — without this override, "display: flex" above would win and
+   the lightbox would stay visible even while hidden. */
+.lightbox[hidden] {
+  display: none;
+}
+
 .lightbox-inner {
   position: relative;
   max-width: min(90vw, 1100px);
@@ -435,9 +442,4 @@ body.lightbox-open { overflow: hidden; }
   text-align: center;
   color: var(--color-muted);
   font-size: 0.85rem;
-   
-.lightbox[hidden] {
-  display: none;
 }
-}
-
