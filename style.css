@@ -1,15 +1,32 @@
 /* racheljmarko.com — shared site styles
-   Placeholder visual direction: neutral, gallery-forward, gets out of the art's way.
-   Swap the CSS variables below once Rachel's brand direction (colors/fonts/logo) is set. */
+   Palette + fonts based on Rachel's Canva mockup:
+   - Landing/blog background: #dad0c2 (warm tan)
+   - Gallery background: #f1eeee (soft off-white) — applied via body.gallery-page below
+   - Headline font: Papercutting — the real font from the mockup. Scott/Rachel bought the
+     Desktop + Webfont license from Creative Market (Creativetacos); files are self-hosted
+     under /assets/fonts/, see the @font-face below. No Google Fonts link needed for this one.
+   - Body font: General Sans (free, Fontshare) — standing in for "PP Telegraf" from the
+     mockup, which is also a paid commercial font (Rachel decided the free look-alike was fine
+     for body text). See README.md for details. */
+
+@font-face {
+  font-family: 'Papercutting';
+  src: url('/assets/fonts/papercutting-regular.woff2') format('woff2'),
+       url('/assets/fonts/papercutting-regular.woff') format('woff');
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+}
 
 :root {
-  --color-bg: #faf9f7;
-  --color-text: #232120;
+  --color-bg: #dad0c2;
+  --color-bg-alt: #f1eeee;
+  --color-text: #2a2420;
   --color-muted: #6b6560;
-  --color-accent: #9c6b4f; /* placeholder accent — swap for Rachel's palette */
-  --color-border: #e4e0da;
-  --font-heading: Georgia, 'Times New Roman', serif;
-  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --color-accent: #9c6b4f;
+  --color-border: #c9bba8;
+  --font-heading: 'Papercutting', cursive;
+  --font-body: 'General Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
   --max-width: 1100px;
 }
 
@@ -22,6 +39,8 @@ body {
   font-family: var(--font-body);
   line-height: 1.6;
 }
+
+body.gallery-page { background: var(--color-bg-alt); }
 
 a { color: var(--color-accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
@@ -45,8 +64,9 @@ img { max-width: 100%; display: block; }
 
 .site-title {
   font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   letter-spacing: 0.02em;
+  text-transform: uppercase;
   color: var(--color-text);
 }
 
@@ -66,8 +86,8 @@ h1, h2, h3 {
   line-height: 1.25;
 }
 
-h1 { font-size: 2.4rem; margin-bottom: 0.5rem; }
-h2 { font-size: 1.6rem; margin-top: 2.5rem; }
+h1 { font-size: 2.1rem; margin-bottom: 0.5rem; letter-spacing: 0.02em; }
+h2 { font-size: 1.5rem; margin-top: 2.5rem; letter-spacing: 0.02em; }
 
 .lede {
   color: var(--color-muted);
@@ -83,6 +103,59 @@ h2 { font-size: 1.6rem; margin-top: 2.5rem; }
   font-size: 0.92rem;
   color: #6b5730;
   margin: 1.5rem 0 2.5rem;
+}
+
+/* Hero — landing page only. Left box is a fixed image (Rachel's block-print pattern) with
+   the "Artist / Creator / Connector / Fabricator" text over it. Right box is a live image
+   pulled at random from Rachel's Drive gallery on every page load, via hero.js. */
+.hero { margin-bottom: 3rem; }
+
+.hero-visual {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 1rem;
+  min-height: 280px;
+}
+
+.hero-pattern {
+  position: relative;
+  border-radius: 6px;
+  background-color: var(--color-border);
+  background-image: url('/assets/images/hero-pattern.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.hero-text {
+  background: rgba(250, 249, 247, 0.92);
+  border-radius: 4px;
+  padding: 1.5rem 2rem;
+  text-align: center;
+}
+
+.hero-text p {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  letter-spacing: 0.03em;
+  margin: 0.15rem 0;
+  color: var(--color-text);
+}
+
+.hero-tile {
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--color-border);
+}
+
+.hero-tile img { width: 100%; height: 100%; object-fit: cover; }
+
+@media (max-width: 640px) {
+  .hero-visual { grid-template-columns: 1fr; }
+  .hero-tile { min-height: 200px; }
 }
 
 .bio-section {
@@ -117,6 +190,13 @@ h2 { font-size: 1.6rem; margin-top: 2.5rem; }
   font-size: 0.85rem;
   text-align: center;
   padding: 1rem;
+  overflow: hidden;
+}
+
+.bio-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .contact-form {
@@ -152,9 +232,42 @@ h2 { font-size: 1.6rem; margin-top: 2.5rem; }
   border-radius: 4px;
   font-size: 0.95rem;
   cursor: pointer;
+  font-family: var(--font-heading);
+  letter-spacing: 0.03em;
 }
 
 .contact-form button:hover { opacity: 0.9; }
+
+/* Follow / social links */
+.social-links { margin: 2rem 0 0; }
+
+.social-links p {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  margin: 0 0 0.6rem;
+}
+
+.social-icons {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.social-icons a {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--color-text);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-icons a:hover { opacity: 0.85; }
+.social-icons svg { width: 18px; height: 18px; fill: currentColor; }
 
 .gallery-tabs {
   display: flex;
@@ -192,6 +305,12 @@ h2 { font-size: 1.6rem; margin-top: 2.5rem; }
   background: var(--color-border);
   border-radius: 4px;
   overflow: hidden;
+  border: 0;
+  padding: 0;
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  font: inherit;
 }
 
 .gallery-grid .tile img {
@@ -200,21 +319,115 @@ h2 { font-size: 1.6rem; margin-top: 2.5rem; }
   object-fit: cover;
 }
 
-.blog-list { list-style: none; padding: 0; margin: 2rem 0; }
-.blog-list li {
-  padding: 1.25rem 0;
-  border-bottom: 1px solid var(--color-border);
+/* Watermarked lightbox preview (see gallery.js) */
+body.lightbox-open { overflow: hidden; }
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 16, 12, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+  z-index: 100;
 }
-.blog-list .post-date {
+
+.lightbox-inner {
+  position: relative;
+  max-width: min(90vw, 1100px);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.lightbox-inner canvas,
+.lightbox-inner img#lightbox-fallback-img {
+  max-width: 100%;
+  max-height: 78vh;
+  border-radius: 4px;
+  background: #111;
+  display: block;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: -2.75rem;
+  right: 0;
+  background: none;
+  border: 0;
+  color: #fff;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+}
+
+.lightbox-caption {
+  color: #f1eeee;
   font-size: 0.82rem;
+  opacity: 0.75;
+  margin: 0;
+  text-align: center;
+}
+
+/* Blog — card grid */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.75rem;
+  margin: 2rem 0;
+}
+
+.blog-card {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.blog-card-thumb {
+  aspect-ratio: 4 / 3;
+  background: var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--color-muted);
+  font-size: 0.8rem;
+  text-align: center;
+  padding: 1rem;
 }
-.blog-list .post-title {
+
+.blog-card-body { padding: 1rem 1.25rem 1.25rem; }
+
+.blog-card .post-title {
   font-family: var(--font-heading);
-  font-size: 1.3rem;
-  margin: 0.25rem 0 0.35rem;
+  font-size: 1.15rem;
+  margin: 0 0 0.35rem;
+  letter-spacing: 0.01em;
 }
-.blog-list .post-excerpt { color: var(--color-muted); }
+
+.blog-card .post-date {
+  font-size: 0.78rem;
+  color: var(--color-muted);
+  margin: 0 0 0.6rem;
+}
+
+.blog-card .post-readmore { font-size: 0.85rem; font-weight: 600; }
+
+.blog-card .post-excerpt {
+  font-size: 0.88rem;
+  color: var(--color-muted);
+  margin: 0 0 0.75rem;
+}
+
+.post-date { font-size: 0.82rem; color: var(--color-muted); }
+
+#blog-post-view img { max-width: 100%; border-radius: 6px; }
 
 .site-footer {
   border-top: 1px solid var(--color-border);

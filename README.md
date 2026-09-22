@@ -5,19 +5,24 @@ no build step, same pattern as thegreenwoodtavern.com and samsbargrill.com.
 
 ## Structure
 
-- `/index.html` — landing page: real bio copy, live hero art, contact form live via Formspree
-- `/gallery/index.html` — gallery, live and pulling real images from Rachel's Drive folders
+- `/index.html` — landing page: real bio copy, hero art, contact form live via Formspree
+- `/gallery/index.html` — gallery, live and pulling real images from Rachel's Drive folders,
+  with a watermarked on-site preview instead of linking out to Drive (see gallery.js)
 - `/blog/index.html` — blog, powered by a Google Form + Sheet on Rachel's own account
   (Sheet ID is wired in; still needs the Sheet's sharing fixed, see Status below)
 - `/assets/css/style.css` — shared styles, matching Rachel's Canva mockup (palette + fonts)
 - `/assets/js/gallery.js` — Drive API integration for the gallery, live (real folder IDs,
-  API key, and the 6 category descriptions Rachel wrote)
-- `/assets/js/hero.js` — pulls two live images from Drive for the homepage hero band
+  API key, and the category descriptions Rachel wrote), plus the watermarked lightbox preview
+- `/assets/js/hero.js` — picks a random image from Rachel's live Drive gallery for the
+  homepage's right-hand hero image, on every page load
 - `/assets/js/blog.js` — reads Rachel's Google Sheet and renders blog posts + single-post pages
 - `/blog/posts/welcome.html` — leftover from the old copy-a-file blogging approach, no longer
   used now that the blog is Sheet-powered; harmless to leave in place or delete later
 - `/assets/fonts/papercutting-regular.woff2` + `.woff` — the real purchased headline font,
   self-hosted (see @font-face at the top of style.css)
+- `/assets/images/hero-pattern.jpg` — fixed background image for the left hero box (the one
+  behind the "Artist / Creator / Connector / Fabricator" text)
+- `/assets/images/rachel-portrait.jpg` — the bio photo on the landing page
 
 ## Brand direction — from Rachel's Canva mockup
 
@@ -81,4 +86,8 @@ no upload, no rebuild. Rachel manages her own posts entirely from the Sheet:
       check the Sheet's Share settings: "Anyone with the link" → Viewer (see step 4 above).
 - [x] GitHub Pages enabled and live
 - [x] Domain cutover: racheljmarko.com DNS points here, CNAME file in place, SSL provisioning
+- [x] Gallery images have a watermarked, resolution-capped on-site preview instead of linking
+      to Drive. This is a deterrent, not a lock — for real protection Rachel should also turn
+      off "viewers can download, print, and copy" in each Drive folder's share settings
+      (Share → gear icon in the share dialog).
 - [ ] Google Workspace mailbox on the domain, then update the contact form's destination
