@@ -105,13 +105,11 @@ h2 { font-size: 1.5rem; margin-top: 2.5rem; letter-spacing: 0.02em; }
   margin: 1.5rem 0 2.5rem;
 }
 
-/* Hero — landing page only, pulls two live images from Rachel's Drive via hero.js */
+/* Hero — landing page only, pulls a live pattern image from Rachel's Drive via hero.js */
 .hero { margin-bottom: 3rem; }
 
 .hero-visual {
-  display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  gap: 1rem;
+  display: block;
   min-height: 280px;
 }
 
@@ -124,13 +122,14 @@ h2 { font-size: 1.5rem; margin-top: 2.5rem; letter-spacing: 0.02em; }
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem;
+  padding: 2.5rem 1.5rem;
+  min-height: 280px;
 }
 
 .hero-text {
   background: rgba(250, 249, 247, 0.92);
   border-radius: 4px;
-  padding: 1.5rem 2rem;
+  padding: 1.5rem 2.5rem;
   text-align: center;
 }
 
@@ -140,19 +139,6 @@ h2 { font-size: 1.5rem; margin-top: 2.5rem; letter-spacing: 0.02em; }
   letter-spacing: 0.03em;
   margin: 0.15rem 0;
   color: var(--color-text);
-}
-
-.hero-tile {
-  border-radius: 6px;
-  overflow: hidden;
-  background: var(--color-border);
-}
-
-.hero-tile img { width: 100%; height: 100%; object-fit: cover; }
-
-@media (max-width: 640px) {
-  .hero-visual { grid-template-columns: 1fr; }
-  .hero-tile { min-height: 200px; }
 }
 
 .bio-section {

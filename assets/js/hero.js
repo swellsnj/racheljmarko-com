@@ -1,19 +1,17 @@
 /*
   racheljmarko.com — homepage hero art
 
-  Rather than a static placeholder image, the hero band pulls two real images straight
-  from Rachel's Drive (same API key/approach as gallery.js): one becomes the muted pattern
-  behind the "Artist / Creator / Connector / Fabricator" text box, the other is the
-  standalone tile beside it. Whichever image happens to be first in each folder is used,
-  so this updates automatically as Rachel reorganizes her Drive — no manual picture pick.
+  The hero band pulls one real image straight from Rachel's Drive (same API key/approach
+  as gallery.js) for the muted pattern behind the "Artist / Creator / Connector / Fabricator"
+  text box. Whichever image happens to be first in the folder is used, so this updates
+  automatically as Rachel reorganizes her Drive — no manual picture pick.
 
-  TODO: once Rachel has specific hero photos she'd rather feature, swap these two folder
-  IDs for a small dedicated "Hero" Drive folder, or hardcode two specific file IDs instead.
+  (There used to be a second "tile" image here pulled from the Builds folder, but it kept
+  surfacing a photo of the family dog instead of Rachel's art, so it's been removed.)
 */
 
 const HERO_API_KEY = 'AIzaSyBNW9gg1Ijz3W65u52BOIYVqjwUmUaV6kk';
 const HERO_PATTERN_FOLDER = '1XIoFQoVXFVA7KxXofmpMxVrfXSKcQJQs'; // Mandala
-const HERO_TILE_FOLDER = '1MDZN5e-n1TYMyIe9JZQ-VI5uB6FQAh4P'; // Builds
 
 async function firstImageIn(folderId) {
   const url = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+mimeType+contains+'image/'&fields=files(id,thumbnailLink)&pageSize=1&key=${HERO_API_KEY}`;
@@ -29,23 +27,11 @@ function upsizeThumbnail(thumbnailLink) {
 
 async function loadHero() {
   const patternEl = document.getElementById('hero-pattern');
-  const tileEl = document.getElementById('hero-tile');
-  if (!HERO_API_KEY || (!patternEl && !tileEl)) return;
+  if (!HERO_API_KEY || !patternEl) return;
 
-  const [pattern, tile] = await Promise.all([
-    firstImageIn(HERO_PATTERN_FOLDER),
-    firstImageIn(HERO_TILE_FOLDER),
-  ]);
-
-  if (pattern && patternEl) {
+  const pattern = await firstImageIn(HERO_PATTERN_FOLDER);
+  if (pattern) {
     patternEl.style.backgroundImage = `url('${upsizeThumbnail(pattern.thumbnailLink)}')`;
-  }
-  if (tile && tileEl) {
-    const img = document.createElement('img');
-    img.src = upsizeThumbnail(tile.thumbnailLink);
-    img.alt = 'Rachel J. Marko artwork';
-    img.loading = 'lazy';
-    tileEl.appendChild(img);
   }
 }
 
