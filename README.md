@@ -67,14 +67,14 @@ no upload, no rebuild. Rachel manages her own posts entirely from the Sheet:
 - [x] Formspree account + form ID wired into the contact form (`index.html`) —
       destination is rachel.j.marko@gmail.com for now
 - [x] Google Cloud project + restricted API key for the Drive gallery
-- [x] The 6 Drive folder IDs + labels, folders shared "anyone with the link can view"
+- [x] The 7 Drive folder IDs + labels, folders shared "anyone with the link can view"
 - [x] Brand direction — colors + fonts applied from Rachel's mockup; headline font is now the
       real purchased Papercutting, body font is still the free General Sans look-alike; no logo yet
-- [ ] Gallery categories don't fully match the mockup yet — it lists 8 (Prints, Mandalas,
-      Surface Design, Murals, Typography, Builds, Misc, Merch), Drive only has 6 folders.
-      "Prints & Surface Design" is still combined, and there's no "Merch" folder. If Rachel
-      wants them split out as in the mockup, she needs to create/share those Drive folders
-      and send over the new folder IDs.
+- [ ] Gallery categories almost match the mockup now — it lists 8 (Prints, Mandalas,
+      Surface Design, Murals, Typography, Builds, Misc, Merch). Rachel split her old combined
+      "Prints & Surface Design" folder into "Web Prints" and "Web Surface Design", so 7 of 8
+      now exist and are wired into `gallery.js`. Only "Merch" still needs a Drive folder —
+      once Rachel creates and shares it, send the folder ID over.
 - [x] Rachel's real Facebook / TikTok / Instagram links wired into the homepage icons
 - [ ] Blog: Form + Sheet exist and the Sheet ID is wired into `assets/js/blog.js`, but the
       Sheet still isn't shared correctly — fetching it returns a permission error. Double

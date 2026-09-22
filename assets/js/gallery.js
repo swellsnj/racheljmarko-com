@@ -10,30 +10,33 @@
   Per Rachel's mockup: there's no "All" tab — the gallery opens on the first category below
   and visitors switch tabs from there.
 
-  STATUS: live. Folder IDs, labels, and API key are all real. The 6 folders are shared
+  STATUS: live. Folder IDs, labels, and API key are all real. The 7 folders are shared
   "anyone with the link can view."
 
   TODO — Rachel's mockup lists 8 categories (Prints, Mandalas, Surface Design, Murals,
-  Typography, Builds, Misc, Merch), but only 6 folders currently exist in Drive:
-    - "Prints & Surface Design" is still one combined folder here. If Rachel wants them
-      as two separate tabs like the mockup, she needs to split it into two Drive folders
-      and share both "anyone with the link can view" — send the two new folder IDs over.
-    - "Merch" doesn't have a folder yet. Same deal: create it, share it, send the ID.
-  Once either exists, add an entry below the same way the other folders are set up.
+  Typography, Builds, Misc, Merch). 7 of 8 now exist in Drive — Rachel split her combined
+  "Prints & Surface Design" folder into "Web Prints" and "Web Surface Design" (Sept 2026).
+  Only "Merch" is still missing a folder: once Rachel creates and shares it, add an entry
+  below the same way the other folders are set up.
 */
 
 const API_KEY = 'AIzaSyBNW9gg1Ijz3W65u52BOIYVqjwUmUaV6kk';
 
 const GALLERY_FOLDERS = [
   {
-    id: '16YfOZzKYlsHmADvw1dfTc6O2qRkyfQyM',
-    label: 'Prints & Surface Design',
-    description: 'I mostly only wear solid colors but I have always been attracted to textile and surface design. I often don’t plan ahead the designs I am making, but figure it out as I go. Everything on here is hand drawn and or printed. There are a few designs that I begrudgingly scanned into the computer and colored. I prefer to use the least technology possible.',
+    id: '1Lvci9J5bjM0dfGoHERtTV7e707Q2QeMF',
+    label: 'Prints',
+    description: '',
   },
   {
     id: '1XIoFQoVXFVA7KxXofmpMxVrfXSKcQJQs',
     label: 'Mandalas',
     description: 'I went through a phase. It was pretty long, but certainly something I had to go through. The mandala work was basically a meditation for me. I even taught mandala drawing classes for a while. These repetitive drawings gave me something to concentrate on when I needed it. I have screenprinted my mandalas as well as sold them on merchandise.',
+  },
+  {
+    id: '16YfOZzKYlsHmADvw1dfTc6O2qRkyfQyM',
+    label: 'Surface Design',
+    description: 'I mostly only wear solid colors but I have always been attracted to textile and surface design. I often don’t plan ahead the designs I am making, but figure it out as I go. Everything on here is hand drawn and or printed. There are a few designs that I begrudgingly scanned into the computer and colored. I prefer to use the least technology possible.',
   },
   {
     id: '1lRGW5Ph4rFW5ETOBbf0fFU6-fqvxjNy-',
