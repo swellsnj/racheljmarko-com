@@ -29,6 +29,17 @@
     <div class="gallery-grid" id="gallery-grid"></div>
   </main>
 
+  <!-- Watermarked preview shown when a gallery tile is clicked, instead of linking out to
+       Google Drive. See the "CLICKING A TILE" note at the top of assets/js/gallery.js. -->
+  <div class="lightbox" id="lightbox" hidden>
+    <div class="lightbox-inner">
+      <button class="lightbox-close" id="lightbox-close" type="button" aria-label="Close preview">&times;</button>
+      <canvas id="lightbox-canvas"></canvas>
+      <img id="lightbox-fallback-img" alt="" hidden />
+      <p class="lightbox-caption" id="lightbox-caption"></p>
+    </div>
+  </div>
+
   <footer class="site-footer">
     &copy; <span id="year"></span> Rachel J. Marko
   </footer>
