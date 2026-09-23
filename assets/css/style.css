@@ -126,20 +126,21 @@ h2 { font-size: 1.5rem; margin-top: 2.5rem; letter-spacing: 0.02em; }
   background-position: center;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   padding: 1.5rem;
 }
 
 .hero-text {
   background: rgba(250, 249, 247, 0.92);
   border-radius: 4px;
-  padding: 1.5rem 2rem;
-  text-align: center;
+  padding: 2rem 2.5rem;
+  text-align: right;
+  max-width: 78%;
 }
 
 .hero-text p {
   font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   letter-spacing: 0.03em;
   margin: 0.15rem 0;
   color: var(--color-text);
@@ -156,6 +157,9 @@ h2 { font-size: 1.5rem; margin-top: 2.5rem; letter-spacing: 0.02em; }
 @media (max-width: 640px) {
   .hero-visual { grid-template-columns: 1fr; }
   .hero-tile { min-height: 200px; }
+  .hero-pattern { justify-content: center; }
+  .hero-text { text-align: center; max-width: 92%; padding: 1.5rem 2rem; }
+  .hero-text p { font-size: 1.5rem; }
 }
 
 .bio-section {
