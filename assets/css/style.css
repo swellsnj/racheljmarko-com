@@ -376,6 +376,38 @@ body.lightbox-open { overflow: hidden; }
   text-align: center;
 }
 
+/* Prev/next arrows — fixed to the left/right edges of the whole overlay (not the image
+   box), so they stay put regardless of the current image's size or orientation. Hidden
+   entirely when the gallery category has only one image (see gallery.js). */
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(20, 16, 12, 0.45);
+  border: 0;
+  color: #fff;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 1.7rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-nav:hover { background: rgba(20, 16, 12, 0.7); }
+
+.lightbox-prev { left: 0.75rem; }
+.lightbox-next { right: 0.75rem; }
+
+@media (max-width: 640px) {
+  .lightbox-nav { width: 40px; height: 40px; font-size: 1.4rem; }
+  .lightbox-prev { left: 0.35rem; }
+  .lightbox-next { right: 0.35rem; }
+}
+
 /* Blog — card grid */
 .blog-grid {
   display: grid;
