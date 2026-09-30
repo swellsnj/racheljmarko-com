@@ -22,6 +22,11 @@
   share settings (Share → the gear icon in the share dialog) — that blocks Drive's own
   download button entirely, on top of this.
 
+  NAVIGATING BETWEEN IMAGES: once a preview is open, the arrow buttons (or the left/right
+  arrow keys) step to the next/previous image within the currently-selected category, looping
+  from the last image back to the first and vice versa. `activeFiles`/`activeIndex` below track
+  what's currently open so the arrows and keyboard both work off the same state.
+
   STATUS: live. Folder IDs, labels, and API key are all real. The 7 folders are shared
   "anyone with the link can view."
 
@@ -125,7 +130,7 @@ async function loadGallery() {
     `).join('');
 
     grid.querySelectorAll('.tile').forEach((btn, i) => {
-      btn.addEventListener('click', () => openLightbox(files[i]));
+      btn.addEventListener('click', () => openLightbox(files, i));
     });
   }
 }
@@ -160,18 +165,40 @@ function drawWatermark(ctx, w, h) {
   ctx.restore();
 }
 
-function openLightbox(file) {
+// The currently-open category's file list and which one is showing, so the prev/next
+// controls (buttons and arrow keys) know what to step to without re-querying the grid.
+let activeFiles = [];
+let activeIndex = -1;
+
+function openLightbox(files, index) {
+  activeFiles = files;
+  activeIndex = index;
+  renderCurrentImage();
+
   const modal = document.getElementById('lightbox');
+  modal.hidden = false;
+  document.body.classList.add('lightbox-open');
+}
+
+function renderCurrentImage() {
   const canvas = document.getElementById('lightbox-canvas');
   const fallbackImg = document.getElementById('lightbox-fallback-img');
   const caption = document.getElementById('lightbox-caption');
-  if (!modal || !canvas) return;
+  const prevBtn = document.getElementById('lightbox-prev');
+  const nextBtn = document.getElementById('lightbox-next');
+  if (!canvas) return;
+
+  const file = activeFiles[activeIndex];
+  if (!file) return;
+
+  // Only one image in this category — nothing to step between, so hide the arrows.
+  const showNav = activeFiles.length > 1;
+  if (prevBtn) prevBtn.hidden = !showNav;
+  if (nextBtn) nextBtn.hidden = !showNav;
 
   canvas.hidden = false;
   fallbackImg.hidden = true;
   caption.textContent = file.name || '';
-  modal.hidden = false;
-  document.body.classList.add('lightbox-open');
 
   const ctx = canvas.getContext('2d');
   const img = new Image();
@@ -191,6 +218,12 @@ function openLightbox(file) {
   img.src = upsizeThumbnail(file.thumbnailLink, 1400);
 }
 
+function showRelativeImage(delta) {
+  if (activeFiles.length === 0) return;
+  activeIndex = (activeIndex + delta + activeFiles.length) % activeFiles.length;
+  renderCurrentImage();
+}
+
 function closeLightbox() {
   const modal = document.getElementById('lightbox');
   if (!modal) return;
@@ -203,13 +236,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const modal = document.getElementById('lightbox');
   const closeBtn = document.getElementById('lightbox-close');
+  const prevBtn = document.getElementById('lightbox-prev');
+  const nextBtn = document.getElementById('lightbox-next');
   if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+  if (prevBtn) prevBtn.addEventListener('click', () => showRelativeImage(-1));
+  if (nextBtn) nextBtn.addEventListener('click', () => showRelativeImage(1));
   if (modal) {
     modal.addEventListener('click', (e) => {
       if (e.target === modal) closeLightbox();
     });
   }
   document.addEventListener('keydown', (e) => {
+    if (modal && modal.hidden) return;
     if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') showRelativeImage(-1);
+    if (e.key === 'ArrowRight') showRelativeImage(1);
   });
 });
