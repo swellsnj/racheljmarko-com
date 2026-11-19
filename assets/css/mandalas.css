@@ -1,0 +1,168 @@
+/* Mandala Classes page (/mandalas/) — builds on style.css.
+   Uses the same palette, fonts and spacing variables; only adds the pieces
+   this page needs (hero banner, offering cards, quote, story grid, info list). */
+
+.mm-hero {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #3b302a url('/assets/images/mandalas/mandala-wall.jpg') center / cover no-repeat;
+  min-height: 340px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 2rem;
+  padding: 2.5rem;
+  margin-bottom: 3rem;
+}
+.mm-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(42, 36, 32, 0.78) 0%, rgba(42, 36, 32, 0.55) 60%, rgba(42, 36, 32, 0.35) 100%);
+}
+.mm-hero > * { position: relative; }
+.mm-hero .mm-logo { width: 190px; height: auto; }
+.mm-hero .eyebrow {
+  font-size: 0.8rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #e8dccb;
+  margin: 0 0 0.75rem;
+  font-weight: 600;
+}
+.mm-hero h1 {
+  color: #fff;
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  margin: 0 0 0.75rem;
+}
+.mm-hero p {
+  color: #f1eeee;
+  font-size: 1.1rem;
+  margin: 0 0 1.5rem;
+  max-width: 34ch;
+}
+
+.mm-btns { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.mm-btn {
+  display: inline-block;
+  background: var(--color-accent);
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-family: var(--font-heading);
+  letter-spacing: 0.03em;
+  font-size: 1.1rem;
+}
+.mm-btn:hover { text-decoration: none; opacity: 0.9; }
+.mm-btn.ghost { background: transparent; border: 1px solid #f1eeee; color: #f1eeee; }
+.mm-btn.ghost:hover { background: rgba(255, 255, 255, 0.12); }
+.mm-btn.outline { background: transparent; border: 1px solid var(--color-accent); color: var(--color-accent); }
+
+/* Offering blocks (Classes, Maternity) */
+.mm-section { margin: 0 0 4rem; scroll-margin-top: 1rem; }
+.mm-section > h2 { margin-top: 0; }
+.mm-split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+@media (min-width: 820px) {
+  .mm-split { grid-template-columns: 1fr 320px; }
+  .mm-split.flip { grid-template-columns: 320px 1fr; }
+  .mm-split.flip .mm-photo { order: -1; }
+}
+.mm-photo img { border-radius: 6px; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
+.mm-cards { display: grid; gap: 1rem; margin: 1.5rem 0; }
+.mm-card {
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 1.1rem 1.25rem;
+}
+.mm-card h3 { margin: 0 0 0.35rem; font-size: 1.45rem; color: var(--color-text); }
+.mm-card p { margin: 0; color: var(--color-muted); }
+.mm-tagline { color: var(--color-muted); margin: -0.25rem 0 0; }
+.mm-tagline strong { color: var(--color-text); font-weight: 600; }
+
+/* Quote */
+.mm-quote {
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  padding: 2.5rem 0;
+  margin: 0 0 4rem;
+  text-align: center;
+}
+.mm-quote h2 { margin: 0 0 0.5rem; }
+.mm-quote .lede { margin: 0 auto 1.5rem; }
+.mm-quote blockquote {
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  line-height: 1.35;
+  margin: 0 auto;
+  max-width: 28ch;
+  color: var(--color-accent);
+}
+.mm-quote cite { display: block; margin-top: 0.75rem; font-style: normal; color: var(--color-muted); font-size: 0.95rem; }
+
+/* Story */
+.mm-story { display: grid; gap: 1.25rem; grid-template-columns: 1fr; margin: 1.5rem 0; }
+@media (min-width: 720px) { .mm-story { grid-template-columns: 1fr 1fr; } }
+.mm-story h3 { margin: 0 0 0.35rem; font-size: 1.4rem; }
+.mm-story p { margin: 0; }
+.mm-thanks {
+  background: var(--color-bg-alt);
+  border-radius: 6px;
+  padding: 1.5rem;
+  margin: 1.5rem 0 0;
+}
+.mm-thanks h3 { margin: 0 0 0.35rem; }
+.mm-thanks p { margin: 0; }
+.mm-thanks .sign { font-family: var(--font-heading); color: var(--color-accent); font-size: 1.3rem; margin-top: 0.5rem; }
+.mm-photos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; margin: 2rem 0 0; }
+@media (max-width: 640px) { .mm-photos { grid-template-columns: repeat(2, 1fr); } }
+.mm-photos .tile { aspect-ratio: 4 / 5; }
+
+/* Shop strip */
+.mm-shop {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  align-items: center;
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 1.5rem;
+  margin: 0 0 4rem;
+}
+@media (min-width: 720px) { .mm-shop { grid-template-columns: 260px 1fr; } }
+.mm-shop img { border-radius: 4px; width: 100%; }
+.mm-shop h2 { margin: 0 0 0.35rem; }
+.mm-shop p { margin: 0 0 1rem; color: var(--color-muted); }
+
+/* Contact */
+.mm-contact { display: grid; grid-template-columns: 1fr; gap: 2.5rem; }
+@media (min-width: 820px) { .mm-contact { grid-template-columns: 1fr 280px; } }
+.mm-info { margin: 0; display: grid; gap: 1rem; }
+.mm-info dt { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-muted); }
+.mm-info dd { margin: 0.15rem 0 0; overflow-wrap: anywhere; }
+.contact-form select {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  background: #fff;
+}
+
+@media (max-width: 640px) {
+  .mm-hero { grid-template-columns: 1fr; text-align: center; padding: 2rem 1.25rem; }
+  .mm-hero .mm-logo { width: 140px; margin: 0 auto; }
+  .mm-hero p { margin-left: auto; margin-right: auto; }
+  .mm-btns { justify-content: center; }
+}
+
+.mm-thanks h3 { font-size: 1.4rem; }
+#contact .contact-form button { font-size: 1.1rem; }
