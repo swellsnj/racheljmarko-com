@@ -166,3 +166,13 @@
 
 .mm-thanks h3 { font-size: 1.4rem; }
 #contact .contact-form button { font-size: 1.1rem; }
+
+/* Section headings: larger and heavier. Papercutting has one weight,
+   so a thin same-color outline gives it a bold look instead of faux-bold. */
+.mm-section h2,
+.mm-quote h2 {
+  font-size: clamp(2.1rem, 4.5vw, 2.8rem);
+  letter-spacing: 0.03em;
+  -webkit-text-stroke: 0.9px currentColor;
+  margin-bottom: 0.75rem;
+}
